@@ -1,0 +1,21 @@
+body {
+    padding: 80px 0 100px 0;
+}
+
+.element-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card {
+    border: 1px solid #fff !important;
+    border-radius: 20px !important;
+}
+
+.take-center {
+    justify-content: center !important;
+}
+
+
+/* 35px 37px 25px 3px rgb(168 187 189 / 6%) */

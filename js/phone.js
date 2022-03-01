@@ -31,7 +31,7 @@ const phoneDisplay = (phones) => {
                 <h5 class="card-title">${phone.phone_name}</h5>
                 <h6 class="card-title">${phone.brand}</h6>
                 <div class="text-center">
-                    <button onclick="phoneDetails()" class="btn btn-primary ">Details</button>
+                    <button onclick="phoneDetails('${phone.slug}')" class="btn btn-primary ">Details</button>
                 </div>
             </div>
         </div>
@@ -39,3 +39,22 @@ const phoneDisplay = (phones) => {
         main.appendChild(div);
     }
 };
+const phoneDetails = (slug) => {
+    fetch(`https://openapi.programming-hero.com/api/phone/${slug}`)
+        .then(res => res.json())
+        .then(data => {
+            const allPhones = data.data;
+            const div = document.createElement('div');
+            main.innerHTML = '';
+            div.innerHTML = `
+                <div class="card" style="width: 18rem;">
+                    <img src="${allPhones.image}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">${allPhones.name}</h5>
+                        <p>${allPhones.releaseDate}</p>
+                    </div>
+                </div>
+            `;
+            main.appendChild(div);
+        })
+}

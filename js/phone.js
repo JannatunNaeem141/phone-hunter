@@ -1,10 +1,13 @@
+// call main div
 const main = document.getElementById('main');
-main.classList.add('test');
 
+// getting data 
 const searchButton = () => {
     const input = document.getElementById('input-value');
     const error = document.getElementById('error');
     const inputValue = input.value;
+
+    // condition check & error handle
     if (isNaN(inputValue) == true) {
         main.innerHTML = '';
         fetch(`https://openapi.programming-hero.com/api/phones?search=${inputValue}`)
@@ -18,16 +21,25 @@ const searchButton = () => {
         main.innerHTML = '';
     }
 };
+
+// display data
 const phoneDisplay = (phones) => {
+
+    const first20data = phones.slice(0, 20);
+    console.log(first20data);
+
     if (phones.length == 0) {
         error.innerText = `No phone found! 
         Try another`;
     }
-    for (const phone of phones) {
+    for (const phone of first20data) {
+        console.log(phone);
         const div = document.createElement('div');
         div.classList.add('col-lg-4');
         div.classList.add('mb-5');
         div.classList.add('element-center');
+
+        // every phones card
         div.innerHTML = `
         <div class="card shadow-lg p-3" style="width: 18rem;">
             <img src="${phone.image}" class="card-img-top" alt="...">
@@ -43,33 +55,49 @@ const phoneDisplay = (phones) => {
         main.appendChild(div);
     }
 };
+
+// showing phone details
 const phoneDetails = (slug) => {
-    console.log(slug);
     fetch(`https://openapi.programming-hero.com/api/phone/${slug}`)
         .then(res => res.json())
         .then(data => {
             const allPhones = data.data;
             const div = document.createElement('div');
             div.classList.add('element-center');
+
+            // add data from sensor array
+            const sensors = allPhones.mainFeatures.sensors;
+
+            // release date
+            const getReleaseDate = allPhones.releaseDate;
+            const release = (getReleaseDate == '') ? "Comming soon" : getReleaseDate;
+
+            // others
+            const getOthers = allPhones.others;
+            const others = (getOthers == undefined) ? "" : getOthers;
+
             main.innerHTML = '';
+
+            // phone details set
             div.innerHTML = `
                 <div class="card shadow-lg p-3" style="width: 18rem;">
                     <img src="${allPhones.image}" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title text-center">${allPhones.name}</h5>
-                        <p>${allPhones.releaseDate}</p>
+                        <p class="release">${release}</p>
                         <p><span class="fw-bold">Brand:</span> ${allPhones.brand}</p>
                         <p><span class="fw-bold">Chipset:</span> ${allPhones.mainFeatures.chipSet}</p>
                         <p><span class="fw-bold">Display Size:</span> ${allPhones.mainFeatures.displaySize}</p>
                         <p><span class="fw-bold">Memory:</span> ${allPhones.mainFeatures.memory}</p>
+                        <p><span class="fw-bold">Sensors:</span> ${sensors}</p>
                         <p><span class="fw-bold">Others:</span></p>
                         <ul>
-                            <li><span class="fw-bold">Bluetooth:</span> ${allPhones.others.Bluetooth}</li>
-                            <li><span class="fw-bold">GPS:</span> ${allPhones.others.GPS}</li>
-                            <li><span class="fw-bold">NFC:</span> ${allPhones.others.NFC}</li>
-                            <li><span class="fw-bold">Radio:</span> ${allPhones.others.Radio}</li>
-                            <li><span class="fw-bold">USB:</span> ${allPhones.others.USB}</li>
-                            <li><span class="fw-bold">WLAN:</span> ${allPhones.others.WLAN}</li>
+                            <li><span class="fw-bold">Bluetooth:</span> ${others.Bluetooth}</li>
+                            <li><span class="fw-bold">GPS:</span> ${others.GPS}</li>
+                            <li><span class="fw-bold">NFC:</span> ${others.NFC}</li>
+                            <li><span class="fw-bold">Radio:</span> ${others.Radio}</li>
+                            <li><span class="fw-bold">USB:</span> ${others.USB}</li>
+                            <li><span class="fw-bold">WLAN:</span> ${others.WLAN}</li>
                         </ul>
                     </div>
                 </div>

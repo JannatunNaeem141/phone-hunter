@@ -1,5 +1,6 @@
 body {
     padding: 80px 0 100px 0;
+    background-color: #c2eaf5 !important;
 }
 
 .element-center {
@@ -8,9 +9,32 @@ body {
     justify-content: center;
 }
 
+.header-color {
+    color: #057fa8;
+}
+
+.button {
+    color: #0d6481 !important;
+    border: 1px solid #0d6481 !important;
+    font-weight: bold !important;
+}
+
+.button:hover {
+    color: #ffffff !important;
+    background-color: #0888ac !important;
+}
+
+#spinner {
+    display: none;
+}
+
 .card {
     border: 1px solid #fff !important;
     border-radius: 20px !important;
+}
+
+.card-padding {
+    padding: 20px 50px !important;
 }
 
 .take-center {

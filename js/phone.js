@@ -3,6 +3,7 @@ const main = document.getElementById('main');
 
 // getting data 
 const searchButton = () => {
+    document.getElementById('spinner').style.display = "block";
     const input = document.getElementById('input-value');
     const error = document.getElementById('error');
     const inputValue = input.value;
@@ -20,6 +21,7 @@ const searchButton = () => {
         input.value = '';
         main.innerHTML = '';
     }
+    document.getElementById('spinner').style.display = "none";
 };
 
 // display data
@@ -41,13 +43,13 @@ const phoneDisplay = (phones) => {
 
         // every phones card
         div.innerHTML = `
-        <div class="card shadow-lg p-3" style="width: 18rem;">
+        <div class="card shadow-lg card-padding" style="width: 18rem;">
             <img src="${phone.image}" class="card-img-top" alt="...">
             <div class="card-body">
                 <h5 class="card-title">${phone.phone_name}</h5>
                 <h6 class="card-title">${phone.brand}</h6>
                 <div class="text-center">
-                    <button onclick="phoneDetails('${phone.slug}')" class="btn btn-primary ">Details</button>
+                    <button onclick="phoneDetails('${phone.slug}')" class="btn  button">Details</button>
                 </div>
             </div>
         </div>

@@ -17,7 +17,7 @@
         <!-- header section -->
         <div class="container">
             <div class="row">
-                <h2 class="text-center mt-4 fw-bold mb-3">Find Your Phone!</h2>
+                <h2 class="text-center mt-4 fw-bold mb-3 header-color">Find Your Phone!</h2>
             </div>
         </div>
     </header>
@@ -28,8 +28,10 @@
                     <!-- search section -->
                     <div class="d-flex mb-5 take-center">
                         <input id="input-value" class="form-control me-2 w-50" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-outline-success" type="submit" onclick="searchButton()">Search</button>
+                        <button class="btn btn-outline-success button" type="submit" onclick="searchButton()">Search</button>
                     </div>
+                    <!-- spinner -->
+                    <img id="spinner" src="/image/spinning-loading.gif" alt="">
 
                     <!-- error message -->
                     <h2 id="error" class="text-danger text-center"></h2>

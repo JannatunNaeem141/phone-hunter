@@ -26,16 +26,13 @@ const searchButton = () => {
 
 // display data
 const phoneDisplay = (phones) => {
-
     const first20data = phones.slice(0, 20);
-    console.log(first20data);
 
     if (phones.length == 0) {
         error.innerText = `No phone found! 
         Try another`;
     }
     for (const phone of first20data) {
-        console.log(phone);
         const div = document.createElement('div');
         div.classList.add('col-lg-4');
         div.classList.add('mb-5');
